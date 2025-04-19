@@ -38,3 +38,30 @@ Tabs.Main0:AddButton({
         setclipboard("nhớ đăng kí kênh nhé")
     end
 })
+local tab1Button = script.Parent.Tab1Button
+local tab2Button = script.Parent.Tab2Button
+
+local tab1Content = script.Parent.Tab1Content
+local tab2Content = script.Parent.Tab2Content
+
+-- Hàm ẩn tất cả tab
+local function hideAllTabs()
+    tab1Content.Visible = false
+    tab2Content.Visible = false
+end
+
+-- Khi nhấn vào Tab1
+tab1Button.MouseButton1Click:Connect(function()
+    hideAllTabs()
+    tab1Content.Visible = true
+end)
+
+-- Khi nhấn vào Tab2
+tab2Button.MouseButton1Click:Connect(function()
+    hideAllTabs()
+    tab2Content.Visible = true
+end)
+
+-- Mặc định hiển thị Tab1
+hideAllTabs()
+tab1Content.Visible = true
