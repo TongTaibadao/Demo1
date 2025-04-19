@@ -31,77 +31,30 @@ local Window = Fluent:CreateWindow({
     Theme = "black",
     MinimizeKey = Enum.KeyCode.End
 })
-local v16 = {
-    Home = v15:AddTab({
-        Title = "Thông Tin"
-    }),
-    Main = v15:AddTab({
-        Title = "Cày"
-    }),
-    Sea = v15:AddTab({
-        Title = "Sự Kiện"
-    }),
-    ITM = v15:AddTab({
-        Title = "Vật Phẩm"
-    }),
-    Setting = v15:AddTab({
-        Title = "Cài Đặt"
-    }),
-    Status = v15:AddTab({
-        Title = "Máy Chủ"
-    }),
-    Stats = v15:AddTab({
-        Title = "Chỉ Số"
-    }),
-    Player = v15:AddTab({
-        Title = "Người Chơi"
-    }),
-    Teleport = v15:AddTab({
-        Title = "Dịch Chuyển"
-    }),
-    Visual = v15:AddTab({
-        Title = "Giả"
-    }),
-    Fruit = v15:AddTab({
-        Title = "Trái"
-    }),
-    Raid = v15:AddTab({
-        Title = "Tập Kích"
-    }),
-    Race = v15:AddTab({
-        Title = "Tộc"
-    }),
-    Shop = v15:AddTab({
-        Title = "Cửa Hàng"
-    }),
-    Misc = v15:AddTab({
-        Title = "Khác"
-    })
-};
-local v17 = v14.Options;
-local v18 = game.PlaceId;
-if (v18 == 2753915549) then
-    Sea1 = true;
-elseif (v18 == 4442272183) then
-    Sea2 = true;
-elseif (v18 == 7449423635) then
-    Sea3 = true;
-else
-    game:Shutdown();
-end
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-    game:GetService("VirtualUser"):Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame);
-    wait();
-    game:GetService("VirtualUser"):Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame);
-end);
-Sea1 = false;
-Sea2 = false;
-Sea3 = false;
-local v19 = game.PlaceId;
-if (v19 == 2753915549) then
-    Sea1 = true;
-elseif (v19 == 4442272183) then
-    Sea2 = true;
-elseif (v19 == 7449423635) then
-    Sea3 = true;
-end
+-- Tab 1
+local AutoFarmTab = Window:MakeTab({
+	Name = "Auto Farm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+AutoFarmTab:AddButton({
+	Name = "Auto Farm Level",
+	Callback = function()
+		print("Auto Farm Level Started")
+	end
+})
+
+-- Tab 2
+local TeleportTab = Window:MakeTab({
+	Name = "Teleport",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+TeleportTab:AddButton({
+	Name = "Teleport to Jungle",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1614, 35, 141)
+	end
+})
