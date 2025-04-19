@@ -58,3 +58,39 @@ TeleportTab:AddButton({
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1614, 35, 141)
 	end
 })
+local player = game.Players.LocalPlayer
+local button = script.Parent:WaitForChild("AutoFarmButton")  -- Assuming AutoFarmButton is the name of the button
+local autoFarming = false
+
+-- Auto Farm function
+local function startAutoFarm()
+    while autoFarming do
+        -- Code to perform Auto Farm here
+        -- Example:
+        local target = game.Workspace:FindFirstChild("Enemy")  -- Find an enemy to farm
+        if target then
+            -- Simulate clicking to attack
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(0,0,0,true,game,0)
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(0,0,0,false,game,0)
+        end
+        wait(0.5)  -- Add a delay between farming actions
+    end
+end
+
+-- Handle Auto Farm button click
+button.MouseButton1Click:Connect(function()
+    if autoFarming then
+        autoFarming = false
+        button.Text = "Start Auto Farm"
+    else
+        autoFarming = true
+        button.Text = "Stop Auto Farm"
+        startAutoFarm()
+    end
+end)
+local teleportButton = script.Parent:WaitForChild("TeleportButton")  -- Teleport button
+local teleportLocation = Vector3.new(100, 10, 200)  -- The target location to teleport to
+
+teleportButton.MouseButton1Click:Connect(function()
+    player.Character:SetPrimaryPartCFrame(CFrame.new(teleportLocation))  -- Move the character
+end)
