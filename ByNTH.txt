@@ -1,0 +1,118 @@
+local ScreenGui = Instance.new("ScreenGui")
+local ImageButton = Instance.new("ImageButton")
+local UICorner = Instance.new("UICorner")
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ImageButton.Parent = ScreenGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
+ImageButton.Size = UDim2.new(0, 40, 0, 40)
+ImageButton.Draggable = true
+ImageButton.Image = "http://www.roblox.com/asset/?id=134334463722355"
+
+UICorner.CornerRadius = UDim.new(1, 10) 
+UICorner.Parent = ImageButton
+
+ImageButton.MouseButton1Down:Connect(function()
+    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
+end)
+
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+repeat wait() until game:IsLoaded()
+local Window = Fluent:CreateWindow({
+    Title = "Shi Upgrade v3",
+    SubTitle = "Blox Fruit",
+    TabWidth = 157,
+    Size = UDim2.fromOffset(450, 300),
+    Acrylic = true,
+    Theme = "Black",
+    MinimizeKey = Enum.KeyCode.End
+})
+Tabs.Main0:AddButton({
+    Title = "Youtuber",
+    Description = "ShiTV",
+    Callback = function()
+        setclipboard("up v4")
+    end
+})
+L_35_.RaceV4:Label("Teleport")
+L_35_.RaceV4:Button("Teleport To Lever Pull", function()
+	PullLever()
+end)
+L_35_.RaceV4:Button("Teleport To Ancient Clock", function()
+	AncientClock()
+end)
+L_35_.RaceV4:Button("Teleport To Ancient One", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(28286.35546875, 14895.3017578125, 102.62469482421875))
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28981.552734375, 14888.4267578125, - 120.245849609375)
+end)
+L_35_.RaceV4:Button("Buy Gear Upgrade Race [ Train ]", function()
+	BuyGear()
+end)
+L_35_.RaceV4:Label("Support Race V4")
+L_35_.RaceV4:Button("Teleport To Race Door", function()
+	TweentoCurrentRaceDoor()
+end)
+L_35_.RaceV4:Label("Complete Trials")
+L_35_.RaceV4:Toggle("Auto Complete Human Trial", _25msShared.CompleteHumanTrial, function(L_545_arg0)
+	_25msShared.CompleteHumanTrial = L_545_arg0
+end)
+spawn(function()
+	pcall(function()
+		while wait() do
+			if _25msShared.CompleteHumanTrial or _25msShared.CompleteGhoulTrial then
+				for L_546_forvar0, L_547_forvar1 in pairs(game.Workspace.Enemies:GetDescendants()) do
+					if L_547_forvar1:FindFirstChild('Humanoid') and L_547_forvar1:FindFirstChild('HumanoidRootPart') and L_547_forvar1.Humanoid.Health > 0 then
+						pcall(function()
+							repeat
+								wait()
+								L_547_forvar1.Humanoid.Health = 0;
+								L_547_forvar1.HumanoidRootPart.CanCollide = false;
+								sethiddenproperty(game.Players.LocalPlayer, 'SimulationRadius', math.huge)
+							until not (_25msShared.CompleteHumanTrial and _25msShared.CompleteGhoulTrial) or not L_547_forvar1.Parent or L_547_forvar1.Humanoid.Health <= 0
+						end)
+					end
+				end
+			end
+		end
+	end)
+end)
+L_35_.RaceV4:Toggle("Auto Complete Ghoul Trial", _25msShared.CompleteGhoulTrial, function(L_548_arg0)
+	_25msShared.CompleteGhoulTrial = L_548_arg0
+end)
+L_35_.RaceV4:Toggle("Auto Conplete Shark Trial", _25msShared.CompleteSharkTrial, function(L_549_arg0)
+	_25msShared.CompleteSharkTrial = L_549_arg0
+end)
+spawn(function()
+	while wait() do
+		pcall(function()
+			if _25msShared.CompleteSharkTrial then
+				if GetSeaBeastTrial() and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - GetSeaBeastTrial().HumanoidRootPart.Position).Magnitude <= 2000 then
+					if game.Workspace.Map:FindFirstChild('FishmanTrial') then
+						TeleportSeabeast(GetSeaBeastTrial())
+						psskill = GetSeaBeastTrial().HumanoidRootPart.CFrame;
+						autospamskill = true
+					else
+						psskill = nil;
+						autospamskill = false
+					end
+				else
+					psskill = nil;
+					autospamskill = false
+				end
+			end
+		end)
+	end
+end)
+L_35_.RaceV4:Button('Complete Sky Trial', function(L_550_arg0)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Map.SkyTrial.Model.FinishPart.CFrame
+end)
+L_35_.RaceV4:Button('Complete Mink Trial', function(L_551_arg0)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Workspace').Map.MinkTrial.Ceiling.CFrame * CFrame.new(0, - 5, 0)
+end)
+L_35_.RaceV4:Button('Complete Cyborg Trial', function(L_552_arg0)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 300, 0)
+end)
