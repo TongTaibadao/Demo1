@@ -23,45 +23,100 @@ end)
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 repeat wait() until game:IsLoaded()
 local Window = Fluent:CreateWindow({
-    Title = "Shi upgrade hub",
+    Title = "Shi Upgrade v3",
     SubTitle = "Blox Fruit",
     TabWidth = 157,
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true,
-    Theme = "black",
+    Theme = "Black",
     MinimizeKey = Enum.KeyCode.End
 })
+local Tabs = {
+Main0=Window:AddTab({ Title="Thông Tin" }),
+Main1=Window:AddTab({ Title="Race V4" }),
+}
 Tabs.Main0:AddButton({
     Title = "Youtuber",
-    Description = "Tổng tài bá đạo",
+    Description = "ShiTV",
     Callback = function()
-        setclipboard("nhớ đăng kí kênh nhé")
+        setclipboard("https://youtube.com/@shitv1155?si=qwqoc_JSdeGEFAil")
     end
 })
-local tab1Button = script.Parent.Tab1Button
-local tab2Button = script.Parent.Tab2Button
-
-local tab1Content = script.Parent.Tab1Content
-local tab2Content = script.Parent.Tab2Content
-
--- Hàm ẩn tất cả tab
-local function hideAllTabs()
-    tab1Content.Visible = false
-    tab2Content.Visible = false
-end
-
--- Khi nhấn vào Tab1
-tab1Button.MouseButton1Click:Connect(function()
-    hideAllTabs()
-    tab1Content.Visible = true
+Tabs.Main1:Label("Teleport")
+Tabs.Main1:AddButton("Teleport To Lever Pull", function()
+	PullLever()
 end)
-
--- Khi nhấn vào Tab2
-tab2Button.MouseButton1Click:Connect(function()
-    hideAllTabs()
-    tab2Content.Visible = true
+Tabs.Main1:AddButton("Teleport To Ancient Clock", function()
+	AncientClock()
 end)
-
--- Mặc định hiển thị Tab1
-hideAllTabs()
-tab1Content.Visible = true
+Tabs.Main1:AddButton("Teleport To Ancient One", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(28286.35546875, 14895.3017578125, 102.62469482421875))
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28981.552734375, 14888.4267578125, - 120.245849609375)
+end)
+Tabs.Main1:AddButton("Buy Gear Upgrade Race [ Train ]", function()
+	BuyGear()
+end)
+Tabs.Main1:Label("Support Race V4")
+Tabs.Main1:AddButton("Teleport To Race Door", function()
+	TweentoCurrentRaceDoor()
+end)
+Tabs.Main1:Label("Complete Trials")
+Tabs.Main1:AddToggle("Auto Complete Human Trial", _25msShared.CompleteHumanTrial, function(L_545_arg0)
+	_25msShared.CompleteHumanTrial = L_545_arg0
+end)
+spawn(function()
+	pcall(function()
+		while wait() do
+			if _25msShared.CompleteHumanTrial or _25msShared.CompleteGhoulTrial then
+				for L_546_forvar0, L_547_forvar1 in pairs(game.Workspace.Enemies:GetDescendants()) do
+					if L_547_forvar1:FindFirstChild('Humanoid') and L_547_forvar1:FindFirstChild('HumanoidRootPart') and L_547_forvar1.Humanoid.Health > 0 then
+						pcall(function()
+							repeat
+								wait()
+								L_547_forvar1.Humanoid.Health = 0;
+								L_547_forvar1.HumanoidRootPart.CanCollide = false;
+								sethiddenproperty(game.Players.LocalPlayer, 'SimulationRadius', math.huge)
+							until not (_25msShared.CompleteHumanTrial and _25msShared.CompleteGhoulTrial) or not L_547_forvar1.Parent or L_547_forvar1.Humanoid.Health <= 0
+						end)
+					end
+				end
+			end
+		end
+	end)
+end)
+Tabs.Main1:AddToggle("Auto Complete Ghoul Trial", _25msShared.CompleteGhoulTrial, function(L_548_arg0)
+	_25msShared.CompleteGhoulTrial = L_548_arg0
+end)
+Tabs.Main1:AddToggle("Auto Conplete Shark Trial", _25msShared.CompleteSharkTrial, function(L_549_arg0)
+	_25msShared.CompleteSharkTrial = L_549_arg0
+end)
+spawn(function()
+	while wait() do
+		pcall(function()
+			if _25msShared.CompleteSharkTrial then
+				if GetSeaBeastTrial() and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - GetSeaBeastTrial().HumanoidRootPart.Position).Magnitude <= 2000 then
+					if game.Workspace.Map:FindFirstChild('FishmanTrial') then
+						TeleportSeabeast(GetSeaBeastTrial())
+						psskill = GetSeaBeastTrial().HumanoidRootPart.CFrame;
+						autospamskill = true
+					else
+						psskill = nil;
+						autospamskill = false
+					end
+				else
+					psskill = nil;
+					autospamskill = false
+				end
+			end
+		end)
+	end
+end)
+Tabs.Main1:AddButton('Complete Sky Trial', function(L_550_arg0)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Map.SkyTrial.Model.FinishPart.CFrame
+end)
+Tabs.Main1:AddButton('Complete Mink Trial', function(L_551_arg0)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Workspace').Map.MinkTrial.Ceiling.CFrame * CFrame.new(0, - 5, 0)
+end)
+Tabs.Main1:AddButton('Complete Cyborg Trial', function(L_552_arg0)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 300, 0)
+end)
