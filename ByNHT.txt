@@ -187,8 +187,8 @@ hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Death
 hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Respawn), function() end)
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 Window = Fluent:CreateWindow({
-    Title = "Shi upgrade V2",
-    SubTitle="Blox Fruit", 
+    Title = "Shi upgrade hub-Blox fruit [free] ",
+    SubTitle="by Tongtaiyeuem", 
     TabWidth=150, 
     Theme="Darker",
     Acrylic=false,
@@ -2347,17 +2347,17 @@ Button.MouseButton1Click:Connect(function()
 end)
 wait(1.0)
 Tabs.Info:AddButton({
-        Title="TBoy Roblox Community",
+        Title="ShiTV community ",
         Description="Discord",
         Callback=function()
-            setclipboard(tostring("https://discord.gg/tboyroblox-community-1253927333920899153")) 
+            setclipboard(tostring("https://discord.gg/BGnr8zgb")) 
         end
 })
 Tabs.Info:AddButton({
-    Title="TBoy Roblox",
+    Title="ShiTV",
     Description="Youtube",
     Callback=function()
-        setclipboard(tostring("https://www.youtube.com/@TBoyRoblox08"))
+        setclipboard(tostring("https://youtube.com/@shitv1155?si=OYnE7MD5oNav4CRm"))
     end
 })
 local executorName
