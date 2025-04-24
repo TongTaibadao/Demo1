@@ -187,7 +187,7 @@ hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Death
 hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Respawn), function() end)
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 Window = Fluent:CreateWindow({
-    Title = "Shi upgrade hub-Blox fruit [free] ",
+    Title = "Shi hub-Blox fruit [free] ",
     SubTitle="by Tongtaiyeuem", 
     TabWidth=150, 
     Theme="Darker",
